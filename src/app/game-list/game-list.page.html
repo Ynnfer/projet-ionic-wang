@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ma bibliothèque</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content #content>
+  <h2>Création d'un nouveau jeu</h2>
+  <ion-button routerLink="/games/new">Création</ion-button>
+  <h2>Liste des jeux</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" *ngFor="let game of games">
+        <ion-card [routerLink]="['/games', game.id]">
+          <img [src]="game.pictureLink" [alt]="game.name" />
+          <ion-card-title>{{game.name}}</ion-card-title>
+          <ion-card-subtitle>Prix : {{game.prix}} €</ion-card-subtitle>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button size="default" (click)="scrollToTop()">Scroll to Top</ion-button>
+</ion-content>
+<ion-footer> Pied de page </ion-footer>

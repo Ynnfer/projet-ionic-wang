@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "projet-ionic-wang": {
+      "hosting": {
+        "app": [
+          "projet-ionic-wang"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "projet-ionic-wang"
+  }
+}
