@@ -1,0 +1,7 @@
+{
+  "name": "projet-ionic-wang",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
