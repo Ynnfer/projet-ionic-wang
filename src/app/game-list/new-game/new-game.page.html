@@ -5,29 +5,39 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-item>
-    <ion-input type="text" label="Affiche" [(ngModel)]="game.pictureLink"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="text" label="Titre" [(ngModel)]="game.name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="text" label="Date" [(ngModel)]="game.releaseDate"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="text" label="Déveloper" [(ngModel)]="game.developer"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-input type="float" label="Prix" [(ngModel)]="game.prix"></ion-input>
-  </ion-item>
+  <ion-list>
     <ion-item>
-    <ion-label>En ligne</ion-label>
-    <ion-toggle label="Statut" [(ngModel)]="game.released"></ion-toggle>
-  </ion-item>
-  <ion-item>
-    <ion-textarea label="Description" rows="20" [(ngModel)]="game.description"></ion-textarea>
-  </ion-item>
-  <p class="text-center">
-    <ion-button (click)="add()">Envoyer</ion-button>
-  </p>
+      <ion-input type="text" label="Affiche" labelPlacement="floating" placeholder="Enter text"
+        [(ngModel)]="game.pictureLink"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" label="Titre" labelPlacement="floating" placeholder="Enter text"
+        [(ngModel)]="game.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" label="Date" labelPlacement="floating" placeholder="Enter text"
+        [(ngModel)]="game.releaseDate"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="text" label="Déveloper" labelPlacement="floating" placeholder="Enter text"
+        [(ngModel)]="game.developer"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-input type="float" label="Prix" labelPlacement="floating" placeholder="Enter text"
+        [(ngModel)]="game.prix"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>En ligne</ion-label>
+      <ion-toggle label="Statut" [(ngModel)]="game.released"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-textarea label="Description" labelPlacement="floating" placeholder="Enter text" rows="15"
+        [(ngModel)]="game.description"></ion-textarea>
+    </ion-item>
+  </ion-list>
 </ion-content>
+<ion-footer style="background-color: transparent">
+  <ion-toolbar>
+    <ion-button (click)="add()">Envoyer</ion-button>
+  </ion-toolbar>
+</ion-footer>
