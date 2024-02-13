@@ -13,7 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Wellcome! Home</strong>
+  <div *ngIf="currentUser">
+    <p>Bonjour! </p>
+    <p>{{ currentUser.email }}</p> 
+    <br>
+    <ion-button color="medium" (click)="logout()">Logout</ion-button>
   </div>
 </ion-content>

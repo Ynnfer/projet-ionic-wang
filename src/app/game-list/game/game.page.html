@@ -47,47 +47,34 @@
   </div>
   <div *ngIf="modif">
     <ion-item>
-      <ion-input
-        type="text"
-        label="Affiche"
-        [(ngModel)]="game.pictureLink"
-      ></ion-input>
+      <ion-input type="text" label="Affiche" [(ngModel)]="game.pictureLink"></ion-input>
     </ion-item>
     <ion-item>
       <ion-input type="text" label="Titre" [(ngModel)]="game.name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input
-        type="text"
-        label="Date"
-        [(ngModel)]="game.releaseDate"
-      ></ion-input>
+      <ion-input type="text" label="Date" placeholder="DD/MM/YYYY" [(ngModel)]="game.releaseDate"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input
-        type="text"
-        label="Déveloper"
-        [(ngModel)]="game.developer"
-      ></ion-input>
+      <ion-input type="text" label="Déveloper" [(ngModel)]="game.developer"></ion-input>
     </ion-item>
     <ion-item>
       <ion-input type="text" label="Prix" [(ngModel)]="game.prix"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-toggle
-        label="Disponible en magasin"
-        [(ngModel)]="game.released"
-      ></ion-toggle>
+      <ion-toggle label="Disponible en magasin" [(ngModel)]="game.released"></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-textarea
-        label="Description"
-        rows="20"
-        [(ngModel)]="game.description"
-      ></ion-textarea>
+      <ion-textarea label="Description" rows="20" [(ngModel)]="game.description"></ion-textarea>
     </ion-item>
-    <p class="text-center">
-      <ion-button (click)="onModif()">Modifier</ion-button>
-    </p>
   </div>
 </ion-content>
+
+<ion-footer style="background-color: transparent">
+  <div *ngIf="showErrorMessage">
+    <ion-text color="danger">{{ errorMessage }}</ion-text>
+  </div>
+  <ion-toolbar>
+    <ion-button (click)="onModif()">Modifier</ion-button>
+  </ion-toolbar>
+</ion-footer>

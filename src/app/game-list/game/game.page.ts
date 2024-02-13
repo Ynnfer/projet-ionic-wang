@@ -12,9 +12,11 @@ import { GameService } from 'src/app/game.service';
 export class GamePage implements OnInit {
   modif: boolean = false;
   game!: Game;
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
   constructor(
-    private alertCtrl : AlertController,
+    private alertCtrl: AlertController,
     private route: ActivatedRoute,
     private Game: GameService,
     private toastCtrl: ToastController,
@@ -29,17 +31,17 @@ export class GamePage implements OnInit {
   }
 
   async setModif() {
-    if(!this.modif) {
+    if (!this.modif) {
       const alert = await this.alertCtrl.create({
-        header : 'Etes vous sur de vouloir modifier ?',
+        header: 'Etes vous sur de vouloir modifier ?',
         subHeader: 'Vous rendrez possible la modification',
-        buttons : [
+        buttons: [
           {
             text: 'Annuler',
             role: 'Cancel'
           }, {
             text: 'Configurer',
-            handler: () => {this.modif = !this.modif}
+            handler: () => { this.modif = !this.modif }
           }
         ]
       });
@@ -58,10 +60,35 @@ export class GamePage implements OnInit {
   }
 
   onModif() {
-    this.Game.update(this.game).subscribe(() => {
-      this.presentToast();
-      this.modif = false;
-    });
+    // Vérifiez si le prix est un nombre ou un flottant
+    const prixRegex = /^[0-9]+(\.[0-9]+)?$/;
+    // Vérifiez si le format de la date est DD/MM/YYYY
+    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+    this.showErrorMessage = false;
+    this.errorMessage = '';
+
+    // Vérifier que l'entrée est vide
+    if (!this.game.name || !this.game.developer || !this.game.pictureLink || !this.game.prix || !this.game.releaseDate || !this.game.description) {
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez compléter tous les champs obligatoires.';
+    }
+    else if (!prixRegex.test(this.game.prix)) {
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez entrer un prix valide.';
+    }
+    else if(!dateRegex.test(this.game.releaseDate)){
+      console.log(this.game.releaseDate)
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez entrer une date valide au format DD/MM/YYYY.';
+    } 
+    else {
+      this.Game.update(this.game).subscribe(() => {
+        this.presentToast();
+        this.modif = false;
+      });
+    }
+
   }
 
   onDelete(id: any) {

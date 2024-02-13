@@ -15,7 +15,7 @@
       <!-- The reorder gesture is disabled by default, enable it to drag and drop items -->
       <!-- Casting $event to $any is a temporary fix for this bug https://github.com/ionic-team/ionic-framework/issues/24245 -->
       <ion-reorder-group [disabled]="false" (ionItemReorder)="handleReorder($any($event))">
-        <ion-item routerLink="/photos">
+        <ion-item routerLink="photos">
           <ion-icon name="camera"></ion-icon>
           <ion-label>Caméra</ion-label>
           <ion-reorder slot="end"></ion-reorder>

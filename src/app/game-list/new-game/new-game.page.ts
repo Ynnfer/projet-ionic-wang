@@ -11,12 +11,16 @@ import { Game } from 'src/app/models/game.model';
 })
 export class NewGamePage implements OnInit {
   public game!: Game;
+  showErrorMessage: boolean = false;
+  errorMessage: string = '';
 
   constructor(
     private Game: GameService,
     private toastCtrl: ToastController,
-    private router : Router
-  ) { }
+    private router: Router
+  ) {
+
+  }
 
   ngOnInit() {
     this.game = new Game();
@@ -35,9 +39,33 @@ export class NewGamePage implements OnInit {
   }
 
   add() {
-    this.Game.saveNewGame(this.game).subscribe(() => {
-      this.game = new Game();
-      this.presentToast();
-    });
+    // Vérifiez si le prix est un nombre ou un flottant
+    const prixRegex = /^[0-9]+(\.[0-9]+)?$/;
+     // Vérifiez si le format de la date est DD/MM/YYYY
+    const dateRegex = /^\d{2}\/\d{2}\/\d{4}$/;
+
+    this.showErrorMessage = false;
+    this.errorMessage = '';
+
+    // Vérifier que l'entrée est vide
+    if (!this.game.name || !this.game.developer || !this.game.pictureLink || !this.game.prix || !this.game.releaseDate || !this.game.description) {
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez compléter tous les champs obligatoires.';
+    }
+    else if(!prixRegex.test(this.game.prix)){
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez entrer un prix valide.';
+    } 
+    else if(!dateRegex.test(this.game.releaseDate)){
+      this.showErrorMessage = true;
+      this.errorMessage = 'Veuillez entrer une date valide au format DD/MM/YYYY.';
+    } 
+    else {
+      this.Game.saveNewGame(this.game).subscribe(() => {
+        this.game = new Game();
+        this.presentToast();
+      });
+    }
+
   }
 }

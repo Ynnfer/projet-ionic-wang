@@ -1,5 +1,8 @@
 <ion-header>
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/games"></ion-back-button>
+    </ion-buttons>
     <ion-title>Nouveau Film</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -7,23 +10,23 @@
 <ion-content [fullscreen]="true">
   <ion-list>
     <ion-item>
-      <ion-input type="text" label="Affiche" labelPlacement="floating" placeholder="Enter text"
+      <ion-input type="text" label="Affiche" labelPlacement="floating" 
         [(ngModel)]="game.pictureLink"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" label="Titre" labelPlacement="floating" placeholder="Enter text"
+      <ion-input type="text" label="Titre" labelPlacement="floating"
         [(ngModel)]="game.name"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" label="Date" labelPlacement="floating" placeholder="Enter text"
+      <ion-input type="text" label="Date" labelPlacement="floating" placeholder="DD/MM/YYYY"
         [(ngModel)]="game.releaseDate"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" label="Déveloper" labelPlacement="floating" placeholder="Enter text"
+      <ion-input type="text" label="Déveloper" labelPlacement="floating"
         [(ngModel)]="game.developer"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="float" label="Prix" labelPlacement="floating" placeholder="Enter text"
+      <ion-input type="float" label="Prix" labelPlacement="floating"
         [(ngModel)]="game.prix"></ion-input>
     </ion-item>
     <ion-item>
@@ -31,12 +34,15 @@
       <ion-toggle label="Statut" [(ngModel)]="game.released"></ion-toggle>
     </ion-item>
     <ion-item>
-      <ion-textarea label="Description" labelPlacement="floating" placeholder="Enter text" rows="15"
+      <ion-textarea label="Description" labelPlacement="floating" rows="15"
         [(ngModel)]="game.description"></ion-textarea>
     </ion-item>
   </ion-list>
 </ion-content>
 <ion-footer style="background-color: transparent">
+  <div *ngIf="showErrorMessage">
+    <ion-text color="danger">{{ errorMessage }}</ion-text>
+  </div>
   <ion-toolbar>
     <ion-button (click)="add()">Envoyer</ion-button>
   </ion-toolbar>
